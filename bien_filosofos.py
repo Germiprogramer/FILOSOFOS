@@ -22,33 +22,33 @@ class Filosofo:
 
     def pensar(self):
         self.estado = "Pensando"
-        self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+        self.estado_label.config(text=f"{self.nombre} : {self.estado}")
         time.sleep(random.uniform(1,5))
 
     def intentar_obtener_palillo(self, palillo):
         palillo.acquire()
-        self.estado = f"Obtuvo {palillo}"
-        self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+        self.estado = f"Obtuvo palillo"
+        self.estado_label.config(text=f"{self.nombre} : {self.estado}")
 
     def obtener_palillos(self):
         #primero intenta obtener el palillo izquierdo
         self.estado = "Intentando obtener palillo izquierdo"
-        self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+        self.estado_label.config(text=f"{self.nombre} : {self.estado}")
         self.intentar_obtener_palillo(self.palilloizq)
         #luego intenta obtener el palillo derecho
         self.estado = "Intentando obtener palillo derecho"
-        self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+        self.estado_label.config(text=f"{self.nombre} : {self.estado}")
         self.intentar_obtener_palillo(self.palilloder)
 
     def comer(self):
         self.estado = "Comiendo"
-        self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+        self.estado_label.config(text=f"{self.nombre} : {self.estado}")
         self.obtener_palillos()
         self.palilloizq.release()
         self.palilloder.release()
         time.sleep(2)
         self.estado = "Ha terminado de comer"
-        self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+        self.estado_label.config(text=f"{self.nombre} : {self.estado}")
         self.num_comidas += 1
         self.num_comidas_label.config(text=f"Comidas: {self.num_comidas}")
         time.sleep(random.uniform(1,5))
@@ -58,7 +58,7 @@ class Filosofo:
             self.pensar()
             self.comer()
             self.estado = f"Ha terminado de comer {self.num_comidas} veces"
-            self.estado_label.config(text=f"(self.nombre) : {self.estado}")
+            self.estado_label.config(text=f"{self.nombre} : {self.estado}")
 
 class Interfaz:
 
